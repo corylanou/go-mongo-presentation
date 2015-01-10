@@ -114,38 +114,38 @@ Summary:
 
 	source dev.env
 
-* Creating a session - Part 1
+* Creating a session - Imports
 
 Define the package and imports we will use:
 
 .code 01_session/main.go /START IMPORT OMIT/,/END IMPORT OMIT/
 
-* Creating a session - Part 2
+* Creating a session - Main block
 
 Open the "main" block
 
 .code 01_session/main.go /START MAIN OMIT/,/END MAIN OMIT/
 
-* Creating a session - Part 3
+* Creating a session - Getting environment variables
 
 Get our environment variables
 
 .code 01_session/main.go /START ENV OMIT/,/END ENV OMIT/
 
-* Creating a session - Part 4
+* Creating a session - Dialing up the server
 
 Dial up the server
 
 .code 01_session/main.go /START DIAL OMIT/,/END DIAL OMIT/
 
-* Creating a session - Part 5
+* Creating a session - Getting the collection
 
 Get our collection
 
 .play 01_session/main.go /START FINAL OMIT/,/END FINAL OMIT/
 
 
-* Creating a session - Part 6
+* Creating a session - Running the example
 
 To run this:
 
@@ -167,11 +167,13 @@ Here is the entire file:
 
 .code 02_structs/main.go /START TYPE OMIT/,/END TYPE OMIT/
 
+.link http://golang.org/pkg/reflect/#StructTag API documentation on StructTag
+
 * Structs and Tags - creating a todo
 
 .play 02_structs/main.go /START MAIN OMIT/,/END MAIN OMIT/
 
-* Creating a session - Part 6
+* Structs and Tags - Running the example
 
 To run this:
 
@@ -186,3 +188,7 @@ You should get something like this returned:
 		Completed: (time.Time) 0001-01-01 00:00:00 +0000 UTC
 	}
 
+
+Here is the entire file:
+
+.link https://gitlab.com/corylanou/beginning-go-meetups/blob/master/mongo/02_structs/main.go main.go
