@@ -68,6 +68,14 @@ To get the library locally, run this command at the command line:
 
 .link http://godoc.org/gopkg.in/mgo.v2 API Documentation
 
+* spew
+
+This is a go library we will use to "pretty print" from our examples.
+
+	go get github.com/davecgh/go-spew/spew
+
+.link https://github.com/davecgh/go-spew API Documentation
+
 * Setting up our environment
 
 We will need some environment variables to make our life easier.
@@ -134,7 +142,7 @@ Dial up the server
 
 Get our collection
 
-.code 01_session/main.go /START FINAL OMIT/,/END FINAL OMIT/
+.play 01_session/main.go /START FINAL OMIT/,/END FINAL OMIT/
 
 
 * Creating a session - Part 6
@@ -150,3 +158,31 @@ You should get something like this returned:
 Here is the entire file:
 
 .link https://gitlab.com/corylanou/beginning-go-meetups/blob/master/mongo/01_session/main.go main.go
+
+* Structs and Annotations - Imports
+
+.code 02_structs/main.go /START IMPORT OMIT/,/END IMPORT OMIT/
+
+* Structs and Annotations - Type and struct tags
+
+.code 02_structs/main.go /START TYPE OMIT/,/END TYPE OMIT/
+
+* Structs and Annotations - creating a todo
+
+.play 02_structs/main.go /START MAIN OMIT/,/END MAIN OMIT/
+
+* Creating a session - Part 6
+
+To run this:
+
+	go run main.go
+
+You should get something like this returned:
+
+	(main.Todo) {
+	Task: (string) (len=8) "Demo mgo",
+		Created: (time.Time) 2015-01-10 11:06:39.876506859 -0700 MST,
+		Updated: (time.Time) 0001-01-01 00:00:00 +0000 UTC,
+		Completed: (time.Time) 0001-01-01 00:00:00 +0000 UTC
+	}
+
