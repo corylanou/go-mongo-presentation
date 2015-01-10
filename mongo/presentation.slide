@@ -1,0 +1,96 @@
+mongoDB with Go
+
+Cory LaNou, InfluxDB
+cory@influxdb.com
+@corylanou
+
+* What is mongoDB
+
+MongoDB (from "humongous") is an open-source document database, and the leading NoSQL database. Written in C++.
+
+.link http://www.mongodb.org/ mongoDB
+
+* What is NoSQL
+
+Trivia bonus question: What does "NoSQL" stands for?
+
+* NoSQL
+
+It does NOT mean "no sql"
+
+It means "Not only SQL"
+
+* Setting up mongoDB
+
+Since installing mongoDB goes beyond the scope of this presentation,
+we will use mongolab.
+
+.link https://mongolab.com/ mongolab home page
+
+.link https://mongolab.com/signup/ 1) Sign up
+
+.link https://mongolab.com/create 2) Create instance
+
+3) Select "Single-Node", then "Sandbox".  This is the free option.
+
+4) Give it the database name "beginning_go".
+
+5) Click "Create New Mongo Deployment"
+
+* mongolab instance url and password
+
+To find the url and password, click the name of the newly created instance.
+
+In this case "beginning_go"
+
+* Add a user
+
+.link https://mongolab.com/databases/beginning_go#users Add user
+
+username: go
+password: I will tell you this at presentation time
+
+* Connecting
+
+If you have the mongo tools installed locally, you can connect to your instance like this:
+
+	mongo <url>/beginning_go -u <dbuser> -p <dbpassword>
+
+This is not necessary for this workshop
+
+* mgo
+
+mgo (pronounced as mango) is a mongoDB driver for the Go language that implements a rich and well tested selection of features under a very simple API following standard Go idioms.
+
+To get the library locally, run this command at the command line:
+
+	go get gopkg.in/mgo.v2
+
+.link http://godoc.org/gopkg.in/mgo.v2 API Documentation
+
+* Setting up our environment
+
+We will need some environment variables to make our life easier.
+
+*Mac/Linux*
+
+	export mongo_url=<your url>
+	export mongo_user=go
+	export mongo_password=<your password>
+	export mongo_collection=to_dos
+
+Test this by running:
+
+	printenv | grep mongo
+
+*Windows*
+
+	set mongo_url=<your url>
+	set mongo_user=go
+	set mongo_password=<your password>
+	set mongo_collection=to_dos
+
+* Creating a session
+
+
+
