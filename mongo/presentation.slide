@@ -159,15 +159,15 @@ Here is the entire file:
 
 .link https://gitlab.com/corylanou/beginning-go-meetups/blob/master/mongo/01_session/main.go main.go
 
-* Structs and Annotations - Imports
+* Structs and Tags - Imports
 
 .code 02_structs/main.go /START IMPORT OMIT/,/END IMPORT OMIT/
 
-* Structs and Annotations - Type and struct tags
+* Structs and Tags - Type and struct tags
 
 .code 02_structs/main.go /START TYPE OMIT/,/END TYPE OMIT/
 
-* Structs and Annotations - creating a todo
+* Structs and Tags - creating a todo
 
 .play 02_structs/main.go /START MAIN OMIT/,/END MAIN OMIT/
 
