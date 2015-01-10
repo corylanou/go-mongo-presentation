@@ -59,5 +59,8 @@ func main() {
 
 	// For debuging, print out the collection we found
 	fmt.Printf("Collection: %+v", collection)
-	// END FINAL OMIT
+
+	// Close main function
 }
+
+// END FINAL OMIT

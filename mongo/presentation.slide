@@ -147,7 +147,6 @@ You should get something like this returned:
 
 	Collection: &{Database:0xc20801ed40 Name:to_dos FullName:beginning_go.to_dos}
 
+Here is the entire file:
 
-
-
-
+.link https://gitlab.com/corylanou/beginning-go-meetups/blob/master/mongo/01_session/main.go main.go
