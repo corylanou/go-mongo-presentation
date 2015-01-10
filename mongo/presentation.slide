@@ -90,7 +90,64 @@ Test this by running:
 	set mongo_password=<your password>
 	set mongo_collection=to_dos
 
-* Creating a session
+* Environment Variables - Advice
+
+I create a local _dev.env_ file that I source and add it to my _.gitignore_ file so it doesn't check in.
+
+This allows me to quickly open the project, run _source dev.env_ and have all necessary environment variables
+for my local project set up.
+
+Summary:
+
+1) Create dev.env file.
+2) Add necessary environment variables
+3) Add "dev.env" to your ".gitignore" file if using git
+4) run:
+
+	source dev.env
+
+* Creating a session - Part 1
+
+Define the package and imports we will use:
+
+.code 01_session/main.go /START IMPORT OMIT/,/END IMPORT OMIT/
+
+* Creating a session - Part 2
+
+Open the "main" block
+
+.code 01_session/main.go /START MAIN OMIT/,/END MAIN OMIT/
+
+* Creating a session - Part 3
+
+Get our environment variables
+
+.code 01_session/main.go /START ENV OMIT/,/END ENV OMIT/
+
+* Creating a session - Part 4
+
+Dial up the server
+
+.code 01_session/main.go /START DIAL OMIT/,/END DIAL OMIT/
+
+* Creating a session - Part 5
+
+Get our collection
+
+.code 01_session/main.go /START FINAL OMIT/,/END FINAL OMIT/
+
+
+* Creating a session - Part 6
+
+To run this:
+
+	go run main.go
+
+You should get something like this returned:
+
+	Collection: &{Database:0xc20801ed40 Name:to_dos FullName:beginning_go.to_dos}
+
+
 
 
 
