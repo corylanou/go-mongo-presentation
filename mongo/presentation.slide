@@ -192,3 +192,30 @@ You should get something like this returned:
 Here is the entire file:
 
 .link https://gitlab.com/corylanou/beginning-go-meetups/blob/master/mongo/02_structs/main.go main.go
+
+* Upserting data - Addinge BSON import
+
+.code 03_upsert/main.go /START IMPORT OMIT/,/END IMPORT OMIT/
+
+.link http://godoc.org/gopkg.in/mgo.v2/bson mgo bson API documentation
+
+* Upserting data - Adding ID to the Todo type
+
+.code 03_upsert/main.go /START TYPE OMIT/,/END TYPE OMIT/
+
+* Upserting data - Upsert the data
+
+.play 03_upsert/main.go /START FINAL OMIT/,/END FINAL OMIT/
+
+Here is the entire file:
+
+.link https://gitlab.com/corylanou/beginning-go-meetups/blob/master/mongo/03_upsert/main.go main.go
+
+* Reading/Writing via Find/Apply
+
+.play 04_read_write/main.go /START CHANGE OMIT/,/END CHANGE OMIT/
+
+Here is the entire file:
+
+.link https://gitlab.com/corylanou/beginning-go-meetups/blob/master/mongo/04_read_write/main.go main.go
+
