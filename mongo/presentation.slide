@@ -100,9 +100,13 @@ Test this by running:
 
 * Environment Variables - Advice
 
-I create a local _dev.env_ file that I source and add it to my _.gitignore_ file so it doesn't check in.
+I create a local _dev.env_ file that I source and add it to my *.gitignore* file so it doesn't check in.
 
-This allows me to quickly open the project, run _source dev.env_ and have all necessary environment variables
+This allows me to quickly open the project, run:
+
+	source dev.env
+	
+and have all necessary environment variables
 for my local project set up.
 
 Summary:
@@ -132,11 +136,15 @@ Get our environment variables
 
 .code 01_session/main.go /START ENV OMIT/,/END ENV OMIT/
 
+.link http://golang.org/pkg/os/ os package documenation
+
 * Creating a session - Dialing up the server
 
 Dial up the server
 
 .code 01_session/main.go /START DIAL OMIT/,/END DIAL OMIT/
+
+.link http://golang.org/pkg/fmt/ fmt package documenation
 
 * Creating a session - Getting the collection
 
@@ -169,6 +177,14 @@ Here is the entire file:
 
 .link http://golang.org/pkg/reflect/#StructTag API documentation on StructTag
 
+*Note:* Getting struct tags wrong can make your life miserable.  Be sure to always run go vet on your code:
+
+	go vet ./...
+
+You may need to install go vet first:
+
+	go get -u golang.org/x/tools/cmd/vet
+
 * Structs and Tags - creating a todo
 
 .play 02_structs/main.go /START MAIN OMIT/,/END MAIN OMIT/
@@ -193,7 +209,7 @@ Here is the entire file:
 
 .link https://gitlab.com/corylanou/beginning-go-meetups/blob/master/mongo/02_structs/main.go main.go
 
-* Upserting data - Addinge BSON import
+* Upserting data - Adding BSON import
 
 .code 03_upsert/main.go /START IMPORT OMIT/,/END IMPORT OMIT/
 
@@ -202,6 +218,8 @@ Here is the entire file:
 * Upserting data - Adding ID to the Todo type
 
 .code 03_upsert/main.go /START TYPE OMIT/,/END TYPE OMIT/
+
+*NOTE:* There are some tricks you will want to do here for ID if you are going to serialize to JSON.  We'll cover this at the end of the presentation.
 
 * Upserting data - Upsert the data
 
@@ -241,3 +259,35 @@ Here is the entire file:
 
 .play 05_aggregation/main.go /START ITER OMIT/,/END ITER OMIT/
 
+*NOTE:* You will have to remove your existing data before running this as we changed the structure.
+
+* ID fields and the downfalls of BSON
+
+If you serialize this struct to JSON and then back from json to this struct, the world will blow up.
+
+To avoid this, we create a type for the ID as a string and add some bson magic.
+
+.code 06_ids/main.go /START TYPE OMIT/,/END TYPE OMIT/
+
+* ID - As a type
+
+.code 06_ids/main.go /START TYPE_ID OMIT/,/END TYPE_ID OMIT/
+
+This also has the side benefit of never allowing me to specify another ID as a specific ID.
+
+Example, I have a placeID and a userID, even though they are both strings, now with a custom type I can never assign a userID to a placeID in the struct.
+
+
+* ID - Boilerplate
+
+.code 06_ids/main.go /START BOILERPLATE OMIT/,/END BOILERPLATE OMIT/
+
+*NOTE:* In go 1.4 this would be a great use of the generate tool
+
+
+* ID - BSON Marshalling
+
+.code 06_ids/main.go /START BSON OMIT/,/END BSON OMIT/
+
+.link http://godoc.org/gopkg.in/mgo.v2/bson#Getter BSON Getter
+.link http://godoc.org/gopkg.in/mgo.v2/bson#Setter BSON Setter

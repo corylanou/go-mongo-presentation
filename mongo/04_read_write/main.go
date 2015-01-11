@@ -54,12 +54,7 @@ func main() {
 
 			mongodb://myuser:mypass@localhost:40001,otherhost:40001/mydb
 	*/
-	addr := fmt.Sprintf(
-		"mongodb://%s:%s@%s",
-		mongoUser,
-		mongoPassword,
-		mongoUrl,
-	)
+	addr := fmt.Sprintf("mongodb://%s:%s@%s", mongoUser, mongoPassword, mongoUrl)
 
 	if mongoSession, err = mgo.Dial(addr); err != nil {
 		panic(err)
@@ -90,12 +85,15 @@ func main() {
 	// END FINAL OMIT
 
 	// START CHANGE OMIT
+	// Initialize a change object
 	var change = mgo.Change{
 		ReturnNew: true,
 		Update: bson.M{
 			"$set": bson.M{
 				"cp": time.Now(),
 			}}}
+
+	// Find and apply the change
 	if changeInfo, err = collection.FindId(todo.Id).Apply(change, &todo); err != nil {
 		panic(err)
 	}

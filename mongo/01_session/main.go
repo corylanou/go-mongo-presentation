@@ -36,17 +36,16 @@ func main() {
 		Format of string for dialing is as follows:
 
 			mongodb://myuser:mypass@localhost:40001,otherhost:40001/mydb
-	*/
-	addr := fmt.Sprintf(
-		"mongodb://%s:%s@%s",
-		mongoUser,
-		mongoPassword,
-		mongoUrl,
-	)
 
+	*/
+	addr := fmt.Sprintf("mongodb://%s:%s@%s", mongoUser, mongoPassword, mongoUrl)
+
+	// Dial up the server and establish a session
 	if mongoSession, err = mgo.Dial(addr); err != nil {
 		panic(err)
 	}
+
+	// Make sure the connection closes
 	defer mongoSession.Close()
 	// END DIAL OMIT
 
