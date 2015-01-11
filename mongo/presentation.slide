@@ -219,3 +219,25 @@ Here is the entire file:
 
 .link https://gitlab.com/corylanou/beginning-go-meetups/blob/master/mongo/04_read_write/main.go main.go
 
+
+* Aggregation - Results Type Definition
+
+.code 05_aggregation/main.go /START TYPE OMIT/,/END TYPE OMIT/
+
+* Aggregation - Seeding data
+
+.code 05_aggregation/main.go /START SEED OMIT/,/END SEED OMIT/
+
+* Aggregation - Pipeline
+
+.code 05_aggregation/main.go /START PIPELINE OMIT/,/END PIPELINE OMIT/
+
+* Aggregation - Results
+
+.code 05_aggregation/main.go /START RESULTS OMIT/,/END RESULTS OMIT/
+
+
+* Aggregation - Iter
+
+.play 05_aggregation/main.go /START ITER OMIT/,/END ITER OMIT/
+
