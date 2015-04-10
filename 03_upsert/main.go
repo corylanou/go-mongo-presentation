@@ -33,7 +33,7 @@ func main() {
 
 	// START ENV OMIT
 	var (
-		mongoUrl        = os.Getenv("mongo_url")
+		mongoURL        = os.Getenv("mongo_url")
 		mongoUser       = os.Getenv("mongo_user")
 		mongoPassword   = os.Getenv("mongo_password")
 		mongoCollection = os.Getenv("mongo_collection")
@@ -59,7 +59,7 @@ func main() {
 		"mongodb://%s:%s@%s",
 		mongoUser,
 		mongoPassword,
-		mongoUrl,
+		mongoURL,
 	)
 
 	if mongoSession, err = mgo.Dial(addr); err != nil {

@@ -33,7 +33,7 @@ func main() {
 
 	// START ENV OMIT
 	var (
-		mongoUrl        = os.Getenv("mongo_url")
+		mongoURL        = os.Getenv("mongo_url")
 		mongoUser       = os.Getenv("mongo_user")
 		mongoPassword   = os.Getenv("mongo_password")
 		mongoCollection = os.Getenv("mongo_collection")
@@ -55,7 +55,7 @@ func main() {
 
 			mongodb://myuser:mypass@localhost:40001,otherhost:40001/mydb
 	*/
-	addr := fmt.Sprintf("mongodb://%s:%s@%s", mongoUser, mongoPassword, mongoUrl)
+	addr := fmt.Sprintf("mongodb://%s:%s@%s", mongoUser, mongoPassword, mongoURL)
 
 	if mongoSession, err = mgo.Dial(addr); err != nil {
 		log.Fatal(err)
