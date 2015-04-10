@@ -1,14 +1,14 @@
-mongoDB with Go
+MongoDB with Go
 
 Cory LaNou, InfluxDB
 cory@influxdb.com
 @corylanou
 
-* What is mongoDB
+* What is MongoDB
 
 MongoDB (from "humongous") is an open-source document database, and the leading NoSQL database. Written in C++.
 
-.link http://www.mongodb.org/ mongoDB
+.link http://www.mongodb.org/ MongoDB
 
 * What is NoSQL
 
@@ -20,9 +20,9 @@ It does NOT mean "no sql"
 
 It means "Not only SQL"
 
-* Setting up mongoDB
+* Setting up MongoDB
 
-Since installing mongoDB goes beyond the scope of this presentation,
+Since installing MongoDB goes beyond the scope of this presentation,
 we will use mongolab.
 
 .link https://mongolab.com/ mongolab home page
@@ -60,7 +60,7 @@ This is not necessary for this workshop
 
 * mgo
 
-mgo (pronounced as mango) is a mongoDB driver for the Go language that implements a rich and well tested selection of features under a very simple API following standard Go idioms.
+mgo (pronounced as mango) is a MongoDB driver for the Go language that implements a rich and well tested selection of features under a very simple API following standard Go idioms.
 
 To get the library locally, run this command at the command line:
 
