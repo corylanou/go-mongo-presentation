@@ -3,6 +3,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"gopkg.in/mgo.v2"
@@ -42,7 +43,7 @@ func main() {
 
 	// Dial up the server and establish a session
 	if mongoSession, err = mgo.Dial(addr); err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	// Make sure the connection closes

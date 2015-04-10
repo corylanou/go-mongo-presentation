@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"time"
 
@@ -54,7 +55,7 @@ func main() {
 	)
 
 	if mongoSession, err = mgo.Dial(addr); err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	// This will get the "default" database that the connection string specified
@@ -84,7 +85,7 @@ func main() {
 	// Upsert seed data
 	for _, todo := range todos {
 		if _, err = collection.UpsertId(todo.Id, &todo); err != nil {
-			panic(err)
+			log.Fatal(err)
 		}
 	}
 	// END SEED OMIT
@@ -116,7 +117,7 @@ func main() {
 	}
 	err = iter.Err()
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	spew.Dump(results)
 

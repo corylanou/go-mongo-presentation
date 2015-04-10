@@ -3,6 +3,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"time"
 
@@ -57,7 +58,7 @@ func main() {
 	addr := fmt.Sprintf("mongodb://%s:%s@%s", mongoUser, mongoPassword, mongoUrl)
 
 	if mongoSession, err = mgo.Dial(addr); err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	defer mongoSession.Close()
 	// END DIAL OMIT
@@ -77,7 +78,7 @@ func main() {
 
 	// This is a shortcut to collection.Upsert(bson.M{"_id": todo.id}, &todo)
 	if changeInfo, err = collection.UpsertId(todo.Id, &todo); err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	spew.Dump(todo)
@@ -95,7 +96,7 @@ func main() {
 
 	// Find and apply the change
 	if changeInfo, err = collection.FindId(todo.Id).Apply(change, &todo); err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	// END CHANGE OMIT
 

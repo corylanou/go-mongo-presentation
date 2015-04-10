@@ -3,6 +3,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"time"
 
@@ -62,7 +63,7 @@ func main() {
 	)
 
 	if mongoSession, err = mgo.Dial(addr); err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	defer mongoSession.Close()
 	// END DIAL OMIT
@@ -82,7 +83,7 @@ func main() {
 
 	// This is a shortcut to collection.Upsert(bson.M{"_id": todo.id}, &todo)
 	if changeInfo, err = collection.UpsertId(todo.Id, &todo); err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	spew.Dump(todo)
