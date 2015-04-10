@@ -14,16 +14,15 @@ import (
 
 //END IMPORT OMIT
 
+// Todo struct defines a task
 //START TYPE OMIT
-type (
-	Todo struct {
-		Id        bson.ObjectId `bson:"_id"`
-		Task      string        `bson:"t"`
-		Created   time.Time     `bson:"c"`
-		Updated   time.Time     `bson:"u,omitempty"`
-		Completed time.Time     `bson:"cp,omitempty"`
-	}
-)
+type Todo struct {
+	ID        bson.ObjectId `bson:"_id"`
+	Task      string        `bson:"t"`
+	Created   time.Time     `bson:"c"`
+	Updated   time.Time     `bson:"u,omitempty"`
+	Completed time.Time     `bson:"cp,omitempty"`
+}
 
 //END TYPE OMIT
 
@@ -71,13 +70,13 @@ func main() {
 	collection = database.C(mongoCollection)
 
 	var todo = Todo{
-		Id:      bson.NewObjectId(),
+		ID:      bson.NewObjectId(),
 		Task:    "Demo mgo",
 		Created: time.Now(),
 	}
 
 	// This is a shortcut to collection.Upsert(bson.M{"_id": todo.id}, &todo)
-	if changeInfo, err = collection.UpsertId(todo.Id, &todo); err != nil {
+	if changeInfo, err = collection.UpsertId(todo.ID, &todo); err != nil {
 		log.Fatal(err)
 	}
 
@@ -95,7 +94,7 @@ func main() {
 			}}}
 
 	// Find and apply the change
-	if changeInfo, err = collection.FindId(todo.Id).Apply(change, &todo); err != nil {
+	if changeInfo, err = collection.FindId(todo.ID).Apply(change, &todo); err != nil {
 		log.Fatal(err)
 	}
 	// END CHANGE OMIT

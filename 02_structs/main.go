@@ -9,15 +9,14 @@ import (
 
 // END IMPORT OMIT
 
+// Todo struct defines a task
 // START TYPE OMIT
-type (
-	Todo struct {
-		Task      string    `bson:"t"`
-		Created   time.Time `bson:"c"`
-		Updated   time.Time `bson:"u,omitempty"`
-		Completed time.Time `bson:"cp,omitempty"`
-	}
-)
+type Todo struct {
+	Task      string    `bson:"t"`
+	Created   time.Time `bson:"c"`
+	Updated   time.Time `bson:"u,omitempty"`
+	Completed time.Time `bson:"cp,omitempty"`
+}
 
 // END TYPE OMIT
 

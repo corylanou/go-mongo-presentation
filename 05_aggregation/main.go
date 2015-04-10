@@ -12,23 +12,22 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
+// Todo struct defines a task
 //START TYPE OMIT
-type (
-	Todo struct {
-		Id        bson.ObjectId `bson:"_id"`
-		Task      string        `bson:"t"`
-		Created   time.Time     `bson:"c"`
-		Updated   time.Time     `bson:"u,omitempty"`
-		Due       time.Time     `bson:"d,omitempty"` // Add due field for example
-		Completed time.Time     `bson:"cp,omitempty"`
-	}
+type Todo struct {
+	ID        bson.ObjectId `bson:"_id"`
+	Task      string        `bson:"t"`
+	Created   time.Time     `bson:"c"`
+	Updated   time.Time     `bson:"u,omitempty"`
+	Due       time.Time     `bson:"d,omitempty"` // Add due field for example
+	Completed time.Time     `bson:"cp,omitempty"`
+}
 
-	// Define a structure to return our aggretation results to
-	TodoDueCounts struct {
-		Id    time.Time `bson:"_id"`
-		Count int       `bson:"count"`
-	}
-)
+// TodoDueCounts defines a structure to return our aggretation results to
+type TodoDueCounts struct {
+	ID    time.Time `bson:"_id"`
+	Count int       `bson:"count"`
+}
 
 //END TYPE OMIT
 
@@ -64,6 +63,11 @@ func main() {
 	// Get our collection
 	collection = database.C(mongoCollection)
 
+	// Drop all data, as previous examples will create data that can't be read by this exercise
+	if err := collection.DropCollection(); err != nil {
+		log.Fatalf("Could not drop collection: %s", err)
+	}
+
 	// START SEED OMIT
 	// declare a slice of todos to insert to
 	var todos []Todo
@@ -73,19 +77,19 @@ func main() {
 	tomorrow := now.Add(time.Hour * 24)
 
 	//Create a quick helper for readability
-	newId := bson.NewObjectId
+	newID := bson.NewObjectId
 
 	// Create seed data
-	todos = append(todos, Todo{Id: newId(), Task: "First task", Created: now, Due: tomorrow})
-	todos = append(todos, Todo{Id: newId(), Task: "Second task", Created: now, Due: now})
-	todos = append(todos, Todo{Id: newId(), Task: "Third task", Created: now, Due: now})
-	todos = append(todos, Todo{Id: newId(), Task: "Fourth task", Created: now, Due: now})
-	todos = append(todos, Todo{Id: newId(), Task: "Fifth task", Created: now, Due: now})
+	todos = append(todos, Todo{ID: newID(), Task: "First task", Created: now, Due: tomorrow})
+	todos = append(todos, Todo{ID: newID(), Task: "Second task", Created: now, Due: now})
+	todos = append(todos, Todo{ID: newID(), Task: "Third task", Created: now, Due: now})
+	todos = append(todos, Todo{ID: newID(), Task: "Fourth task", Created: now, Due: now})
+	todos = append(todos, Todo{ID: newID(), Task: "Fifth task", Created: now, Due: now})
 
 	// Upsert seed data
 	for _, todo := range todos {
-		if _, err = collection.UpsertId(todo.Id, &todo); err != nil {
-			log.Fatal(err)
+		if _, err = collection.UpsertId(todo.ID, &todo); err != nil {
+			log.Fatalf("error upserting %#v: %s", todo, err)
 		}
 	}
 	// END SEED OMIT
@@ -117,7 +121,7 @@ func main() {
 	}
 	err = iter.Err()
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("error iterating: %s", err)
 	}
 	spew.Dump(results)
 

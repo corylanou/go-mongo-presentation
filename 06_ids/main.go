@@ -6,51 +6,60 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
+// TodoID is the ID for a Todo task
 // START TYPE_ID OMIT
-type TodoId string
+type TodoID string
 
 // END TYPE_ID OMIT
 
+// Todo struct defines a task
 // START TYPE OMIT
-type (
-	Todo struct {
-		Id        TodoId    `bson:"_id"          json:"id"`
-		Task      string    `bson:"t"            json:"task"`
-		Created   time.Time `bson:"c"            json:"created"`
-		Updated   time.Time `bson:"u,omitempty"  json:"updated"`
-		Completed time.Time `bson:"cp,omitempty" json:"completed"`
-	}
-)
+type Todo struct {
+	ID        TodoID    `bson:"_id"          json:"id"`
+	Task      string    `bson:"t"            json:"task"`
+	Created   time.Time `bson:"c"            json:"created"`
+	Updated   time.Time `bson:"u,omitempty"  json:"updated"`
+	Completed time.Time `bson:"cp,omitempty" json:"completed"`
+}
 
 // END TYPE OMIT
 
 // START BOILERPLATE OMIT
-func newId() string {
+func newID() string {
 	return bson.NewObjectId().Hex()
 }
 
-func NewTodoId() TodoId { return TodoId(newId()) }
+// NewTodoID creates a new ID
+func NewTodoID() TodoID { return TodoID(newID()) }
 
-func (id TodoId) Blank() bool   { return id == "" }
-func (id TodoId) Present() bool { return id != "" }
+// Blank determins if a Todo is blank
+func (id TodoID) Blank() bool { return id == "" }
 
-func (id TodoId) Valid() bool   { return bson.IsObjectIdHex(string(id)) }
-func (id TodoId) Invalid() bool { return !id.Valid() }
+//Present determins if the Todo is present
+func (id TodoID) Present() bool { return id != "" }
+
+// Valid determines if a Todo is valid (has an valid ID)
+func (id TodoID) Valid() bool { return bson.IsObjectIdHex(string(id)) }
+
+// Invalid determines if the Todo is invalid
+func (id TodoID) Invalid() bool { return !id.Valid() }
 
 // END BOILERPLATE OMIT
 
+// GetBSON defines a custom unmarshaller to convert the BSON ObjectID to a TodoID
 // START BSON OMIT
-func (id TodoId) GetBSON() (v interface{}, e error) {
+func (id TodoID) GetBSON() (v interface{}, e error) {
 	if id.Valid() {
 		v = bson.ObjectIdHex(string(id))
 	}
 	return
 }
 
-func (id *TodoId) SetBSON(raw bson.Raw) error {
+// SetBSON defines a customer marshaller to convert at TodoID to a BSON ObjectID
+func (id *TodoID) SetBSON(raw bson.Raw) error {
 	var oid bson.ObjectId
 	err := raw.Unmarshal(&oid)
-	*id = TodoId(oid.Hex())
+	*id = TodoID(oid.Hex())
 	return err
 }
 
