@@ -165,7 +165,7 @@ You should get something like this returned:
 
 Here is the entire file:
 
-.link https://gitlab.com/corylanou/beginning-go-meetups/blob/master/mongo/01_session/main.go main.go
+.link https://github.com/corylanou/go-mongo-presentation/blob/master/01_session/main.go main.go
 
 * Structs and Tags - Imports
 
@@ -207,7 +207,7 @@ You should get something like this returned:
 
 Here is the entire file:
 
-.link https://gitlab.com/corylanou/beginning-go-meetups/blob/master/mongo/02_structs/main.go main.go
+.link https://github.com/corylanou/go-mongo-presentation/blob/master/02_structs/main.go main.go
 
 * Upserting data - Adding BSON import
 
@@ -227,7 +227,7 @@ Here is the entire file:
 
 Here is the entire file:
 
-.link https://gitlab.com/corylanou/beginning-go-meetups/blob/master/mongo/03_upsert/main.go main.go
+.link https://github.com/corylanou/go-mongo-presentation/blob/master/03_upsert/main.go main.go
 
 * Reading/Writing via Find/Apply
 
@@ -235,7 +235,7 @@ Here is the entire file:
 
 Here is the entire file:
 
-.link https://gitlab.com/corylanou/beginning-go-meetups/blob/master/mongo/04_read_write/main.go main.go
+.link https://github.com/corylanou/go-mongo-presentation/blob/master/04_read_write/main.go main.go
 
 
 * Aggregation - Results Type Definition
