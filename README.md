@@ -5,5 +5,5 @@ Presentation on how to use MongoDB and Go
 
 ## TODO
 
-- [] Add mocks for testing
-- [] Run Spell Checker on presentation
+- [ ] Add mocks for testing
+- [ ] Run Spell Checker on presentation
