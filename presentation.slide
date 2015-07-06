@@ -138,6 +138,13 @@ Get our environment variables
 
 .link http://golang.org/pkg/os/ os package documenation
 
+* Creating a session - Declare some local variables
+
+Decalre some local variables
+
+.code 01_session/main.go /START VAR OMIT/,/END VAR OMIT/
+
+
 * Creating a session - Dialing up the server
 
 Dial up the server

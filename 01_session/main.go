@@ -24,13 +24,14 @@ func main() {
 	)
 	// END ENV OMIT
 
+	// START VAR OMIT
 	var (
 		mongoSession *mgo.Session
 		database     *mgo.Database
 		collection   *mgo.Collection
 		err          error
 	)
-	//END IMPORT OMIT
+	//END VAR OMIT
 
 	// START DIAL OMIT
 	/*
