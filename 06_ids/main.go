@@ -32,10 +32,10 @@ func newID() string {
 // NewTodoID creates a new ID
 func NewTodoID() TodoID { return TodoID(newID()) }
 
-// Blank determins if a Todo is blank
+// Blank determines if a Todo is blank
 func (id TodoID) Blank() bool { return id == "" }
 
-//Present determins if the Todo is present
+//Present determines if the Todo is present
 func (id TodoID) Present() bool { return id != "" }
 
 // Valid determines if a Todo is valid (has an valid ID)
