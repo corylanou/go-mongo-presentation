@@ -216,6 +216,10 @@ Here is the entire file:
 
 .link https://github.com/corylanou/go-mongo-presentation/blob/master/02_structs/main.go main.go
 
+*NOTE:* Zero Time can be detected
+
+.link http://golang.org/pkg/time/#Time.IsZero Time.IsZero
+
 * Upserting data - Adding BSON import
 
 .code 03_upsert/main.go /START IMPORT OMIT/,/END IMPORT OMIT/
@@ -280,7 +284,7 @@ To avoid this, we create a type for the ID as a string and add some bson magic.
 
 .code 06_ids/main.go /START TYPE_ID OMIT/,/END TYPE_ID OMIT/
 
-This also has the side benefit of never allowing me to specify another ID as a specific ID.
+This also has the side benefit of never allowing me to specify another ID as a TODO ID.
 
 Example, I have a placeID and a userID, even though they are both strings, now with a custom type I can never assign a userID to a placeID in the struct.
 
@@ -298,3 +302,53 @@ Example, I have a placeID and a userID, even though they are both strings, now w
 
 .link http://godoc.org/gopkg.in/mgo.v2/bson#Getter BSON Getter
 .link http://godoc.org/gopkg.in/mgo.v2/bson#Setter BSON Setter
+
+* Stubbing and testing calls to the database
+
+Stubbing out our calls allows us to create quick unit tests instead of actually calling into the database.
+
+
+* The interface
+
+Declaring an interface allows you to create a stub in your tests later
+
+.code 07_stubbing_and_testing/handler.go /START TYPE OMIT/,/END TYPE OMIT/
+
+* The handler PART 1
+
+There are many ways to attach context to your handlers, this is a simple way but there are better ways.
+
+.code 07_stubbing_and_testing/handler.go /START HANDLER1 OMIT/,/END HANDLER1 OMIT/
+
+
+* The handler PART 2
+
+.code 07_stubbing_and_testing/handler.go /START HANDLER2 OMIT/,/END HANDLER2 OMIT/
+
+Here is the entire file:
+
+.link https://github.com/corylanou/go-mongo-presentation/blob/master/07_stubbing_and_testing/handler.go handler.go
+
+* The stub
+
+.code 07_stubbing_and_testing/handler_test.go /START STUB OMIT/,/END STUB OMIT/
+
+* Testing Found - Setting up the stub
+
+.code 07_stubbing_and_testing/handler_test.go /START FOUND1 OMIT/,/END FOUND1 OMIT/
+
+* Testing Found - Setting up the http test
+
+.code 07_stubbing_and_testing/handler_test.go /START FOUND2 OMIT/,/END FOUND2 OMIT/
+
+.link http://golang.org/pkg/net/http/httptest/#pkg-examples httptest
+
+* Testing Not Found
+
+.code 07_stubbing_and_testing/handler_test.go /START NOTFOUND1 OMIT/,/END NOTFOUND1 OMIT/
+.code 07_stubbing_and_testing/handler_test.go /START NOTFOUND2 OMIT/,/END NOTFOUND2 OMIT/
+
+* Testing Internal Server Error
+
+.code 07_stubbing_and_testing/handler_test.go /START SERVERERROR1 OMIT/,/END SERVERERROR1 OMIT/
+.code 07_stubbing_and_testing/handler_test.go /START SERVERERROR2 OMIT/,/END SERVERERROR2 OMIT/
