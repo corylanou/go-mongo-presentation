@@ -33,7 +33,7 @@ func (s *Server) TodoShow(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if !todo.ID.Blank() {
+	if todo.ID.Present() {
 		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 		w.WriteHeader(http.StatusOK)
 		if err := json.NewEncoder(w).Encode(todo); err != nil {
