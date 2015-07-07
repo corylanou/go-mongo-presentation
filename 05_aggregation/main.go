@@ -97,7 +97,7 @@ func main() {
 	// START PIPELINE OMIT
 	pipeline := []bson.M{
 		{"$group": bson.M{
-			"_id":   bson.M{"$dayOfYear": "$d"},
+			"_id":   "$d",
 			"count": bson.M{"$sum": 1},
 		}},
 	}
